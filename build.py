@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#%%
 import urllib.request
 import json
 import subprocess
@@ -19,3 +20,4 @@ minor_version = int(minor_version) + 1
 image_name = f"jo5ta/cpp_dev_docker:{major_version}.{minor_version:02d}"
 command = f"docker build -t {image_name} -f cpp_dev_docker.dockerfile ."
 subprocess.run(command, shell=True, check=True)
+print("done")

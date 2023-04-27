@@ -22,4 +22,4 @@ subprocess.run(command, shell=True, check=True)
 
 # Push the Docker image to the registry
 command = f"docker push {image_name}"
-#subprocess.run(command, shell=True, check=True)
+subprocess.run(command, shell=True, check=True)
