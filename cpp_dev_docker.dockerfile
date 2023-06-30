@@ -41,22 +41,26 @@ RUN pacman -Sy --noconfirm \
     qemu-base \
     ;
 
-RUN pacman -S --noconfirm  \
+RUN pacman -Sy --noconfirm  \
     python\
     python-pip\
     ;
 
-RUN pip install \
-    numpy\
-    scipy\
-    pandas\
-    matplotlib\
+RUN pacman -Sy --noconfirm  \
+    python-numpy\
+    python-scipy\
+    python-pandas\
+    python-matplotlib\
     ;
 
-RUN pacman -S --noconfirm \
+RUN pacman -Sy --noconfirm \
     libtar \
     sudo \
     vi \
+    ;
+
+RUN pacman -Sy --noconfirm \
+    rustup \
     ;
 
 RUN  \
