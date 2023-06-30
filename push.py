@@ -20,6 +20,11 @@ image_name = f"jo5ta/cpp_dev_docker:{major_version}.{minor_version:02d}"
 command = f"docker build -t {image_name} -f cpp_dev_docker.dockerfile ."
 subprocess.run(command, shell=True, check=True)
 
+command = f"docker build -t jo5ta/cpp_dev_docker:latest -f cpp_dev_docker.dockerfile ."
+subprocess.run(command, shell=True, check=True)
+
 # Push the Docker image to the registry
 command = f"docker push {image_name}"
+subprocess.run(command, shell=True, check=True)
+command = f"docker push jo5ta/cpp_dev_docker:latest"
 subprocess.run(command, shell=True, check=True)
