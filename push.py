@@ -4,14 +4,17 @@ import json
 import subprocess
 
 # Set the URL of the Docker Hub registry API
-url = 'https://registry.hub.docker.com/v2/repositories/jo5ta/cpp_dev_docker/tags/?page_size=1'
+url = 'https://registry.hub.docker.com/v2/repositories/jo5ta/cpp_dev_docker/tags/'
 
 # Make a request to the API and decode the JSON response
 response = urllib.request.urlopen(url).read().decode('utf-8')
 data = json.loads(response)
+data = data['results']
+data = filter(lambda e : e['name'] != 'latest', data)
+data = sorted(data, key = lambda e : e['last_updated'], reverse=True)
 
 # Extract the version ID of the latest tag and increment the minor version
-latest_version = data['results'][0]['name']
+latest_version = data[0]['name']
 major_version, minor_version, *_ = latest_version.split('.')
 minor_version = int(minor_version) + 1
 
