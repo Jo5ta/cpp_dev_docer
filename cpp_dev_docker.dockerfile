@@ -9,6 +9,14 @@ RUN pacman -S --noconfirm\
     sudo\
     ;
 
+RUN \
+    pacman -S --noconfirm bash-completion
+
+RUN\
+    git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git ;\
+    make -C ble.sh install PREFIX=/usr/local/ ;\
+    echo 'source /usr/local/share/blesh/ble.sh' >> /etc/bash.bashrc ;
+
 RUN pacman -S --noconfirm\
     git\
     git-lfs\
@@ -66,11 +74,6 @@ RUN pacman -Sy --noconfirm\
 RUN pacman -Sy --noconfirm\
     rustup\
     ;
-
-RUN\
-    git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git ;\
-    make -C ble.sh install PREFIX=/usr/local/ ;\
-    echo 'source /usr/local/share/blesh/ble.sh' >> /etc/bash.bashrc ;
 
 RUN\
     useradd -m cpp_dev_docker ;\
